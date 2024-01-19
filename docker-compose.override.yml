@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+
+  sql-data:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - letters-sqldata:/var/lib/postgresql/data
+
+  api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Kestrel__Endpoints__HTTP__Url=http://0.0.0.0:80
+    ports:
+      - "8002:80"
+
+volumes:
+  letters-sqldata:
+    external: false

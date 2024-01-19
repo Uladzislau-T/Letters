@@ -1,0 +1,16 @@
+﻿version: '3.8' 
+
+services: 
+
+  sql-data:
+    image: postgres:latest  
+
+  api:
+    image: ${REGISTRY:-letters}/letters.api:${PLATFORM:-linux}-${TAG:-latest}
+    build:
+      context: .
+      dockerfile: API/Letters.API/Dockerfile
+    depends_on:
+      - sql-data
+
+

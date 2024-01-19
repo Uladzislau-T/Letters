@@ -2,7 +2,7 @@
 
 namespace Letters.Domain.Enums
 {
-  public enum MailResultEnum
+  public enum MailStatusEnum
   {
     Pending,
     Ok,

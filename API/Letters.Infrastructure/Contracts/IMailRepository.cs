@@ -1,12 +1,15 @@
 ﻿
 
+using Letters.Domain.Models;
+
 namespace Letters.Infrastructure.Contracts
 {
     public interface IMailRepository
     {
-        // Task<IEnumerable<PlanningEvent>> GetAllMailsAsync(CreateMailDto eventParameters, bool trackChanges);        
-        // Task CreateEventAsync(PlanningEvent planningEvent);
-        // Task<int> GetEventCountAsync(bool trackChanges = false);
-        // // Task DeleteEvent(int id);
+        Task<IEnumerable<Mail>> GetAllMailsAsync(bool trackChanges); 
+        Task<Mail> GetMailByIdAsync(int id, bool trackChanges = false);       
+        Task CreateMailAsync(Mail mail);
+
+        // Task DeleteMail(int id);
     }
 }

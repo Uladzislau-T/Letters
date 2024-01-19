@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Letters.API;
+using Letters.API.Filters;
 using Letters.API.Middlewares;
 using Letters.Infrastructure;
 using Letters.Infrastructure.Contracts;
@@ -25,6 +26,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.Configure<ApiBehaviorOptions>(options
     => options.SuppressModelStateInvalidFilter = true);
+    
+builder.Services.AddScoped<ValidationFilterAttribute>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

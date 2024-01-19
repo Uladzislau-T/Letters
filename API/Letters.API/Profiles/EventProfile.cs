@@ -17,7 +17,7 @@ namespace Letters.Profiles
           )
         );
       
-      CreateMap<CreateMailDto, Mail>();    
+      CreateMap<CreateMailDto, Mail>().ForMember(m => m.Recipients, opt => opt.Ignore());    
     }
   }
 }

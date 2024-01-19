@@ -11,8 +11,6 @@ namespace Letters.Infrastructure
 
         public Context(DbContextOptions<Context> options) : base(options)
         {
-            // Database.EnsureDeleted();
-            Database.EnsureCreated();
         }        
 
         protected override void OnModelCreating(ModelBuilder builder)

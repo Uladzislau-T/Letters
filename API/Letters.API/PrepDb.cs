@@ -59,7 +59,7 @@ namespace Letters.API
               Body = "At 12 o'clock near the station",
               Result = MailStatusEnum.Failed,
               Date = new DateTimeOffset(DateTime.Now),
-              FaildMessage = "Exception occured",
+              FaildMessage = "Exception occurred",
               Recipients = new List<Recipient>() {
                 new Recipient() {               
                   Name = "fubuisdbf@mail.ru"

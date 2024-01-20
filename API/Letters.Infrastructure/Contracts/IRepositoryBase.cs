@@ -2,6 +2,10 @@
 
 namespace Letters.Infrastructure.Contracts
 {
+    /// <summary>
+    /// Defines a contract that represents the base repository for T model
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IRepositoryBase<T>
     {
         IQueryable<T> FindAll(bool trackChanges);

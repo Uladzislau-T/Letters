@@ -1,9 +1,11 @@
 using System.Net;
-using Letters.API.Exceptions;
 using Letters.Domain.ErrorModels;
 
 namespace Letters.API.Middlewares
 {
+  /// <summary>
+  /// Custom middleware to handle exceptions on the server
+  /// </summary>
   public class ExceptionMiddleware
   {
     private readonly RequestDelegate _next;
@@ -18,11 +20,6 @@ namespace Letters.API.Middlewares
         try
         {
           await _next(httpContext);
-        }
-        catch(HttpResponseException ex)
-        {
-          _logger.LogError($"Error: {ex.Message}");
-          await HandleExceptionAsync(httpContext, ex, ex.StatusCode);
         }
         catch (Exception ex)
         {

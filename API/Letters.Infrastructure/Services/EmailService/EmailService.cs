@@ -1,11 +1,14 @@
-using EventPlanning.API.Contracts;
-using EventPlanning.API.Data;
-using EventPlanning.Configuration;
+
+using Letters.Infrastructure.Contracts;
 using MailKit.Net.Smtp;
+using Microsoft.Extensions.Logging;
 using MimeKit;
 
-namespace Letters.Infrastructure.Services
+namespace Letters.Infrastructure.Services.EmailService
 {
+  /// <summary>
+  /// Class that helps to create email
+  /// </summary>
   public class EmailService : IEmailService
   {
     private readonly ILogger<EmailService> _logger;    
@@ -17,6 +20,11 @@ namespace Letters.Infrastructure.Services
       _emailConfiguration = emailConfiguration;
     }
 
+    /// <summary>
+    /// Asynchronously send an email specified in the EmailData.
+    /// </summary>
+    /// <param name="data">Contains all necessary information to send an email</param>
+    /// <returns></returns>
     public async Task SendEmailAsync(EmailData data)
     {
       var emailMessage = CreateEmailMessage(data);
@@ -26,7 +34,7 @@ namespace Letters.Infrastructure.Services
     private MimeMessage CreateEmailMessage(EmailData data)
     {
         var emailMessage = new MimeMessage();
-        emailMessage.From.Add(new MailboxAddress("EventPlanning",_emailConfiguration.From));
+        emailMessage.From.Add(new MailboxAddress("LettersProject",_emailConfiguration.From));
         emailMessage.To.AddRange(data.To);
         emailMessage.Subject = data.Subject;
         emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = data.Content };

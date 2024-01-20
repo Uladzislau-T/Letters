@@ -38,10 +38,13 @@ namespace Letters.API.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("FaildMessage")
-                        .HasColumnType("text");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("");
 
-                    b.Property<int>("Result")
-                        .HasColumnType("integer");
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Subject")
                         .IsRequired()

@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Letters.Infrastructure
 {
+    /// <summary>
+    /// A DbContext instance represents a session with the database and can be used to query and save instances of your entities. DbContext is a combination of the Unit Of Work and Repository patterns.
+    /// </summary>
     public class Context : DbContext
     {
         public DbSet<Mail> Mail { get; set; }
@@ -15,6 +18,12 @@ namespace Letters.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Mail>()
+                .Property(e => e.FaildMessage)
+                .HasDefaultValue("");
+            builder.Entity<Mail>()
+                .Property(e => e.Result)
+                .HasConversion<string>();
 
             // builder.UseSnakeCaseNames();        
         }    

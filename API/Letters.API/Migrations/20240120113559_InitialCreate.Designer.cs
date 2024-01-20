@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Letters.API.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240119130005_InitialCreate")]
+    [Migration("20240120113559_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -41,10 +41,13 @@ namespace Letters.API.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("FaildMessage")
-                        .HasColumnType("text");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("");
 
-                    b.Property<int>("Result")
-                        .HasColumnType("integer");
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Subject")
                         .IsRequired()

@@ -3,6 +3,9 @@ using System.Text.Json;
 
 namespace Letters.Domain.ErrorModels
 {
+    /// <summary>
+    /// Custom error details class
+    /// </summary>
     public class ErrorDetails
     {
         public string StatusCode { get; set; }

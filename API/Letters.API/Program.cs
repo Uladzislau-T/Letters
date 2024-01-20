@@ -4,6 +4,7 @@ using Letters.API.Filters;
 using Letters.API.Middlewares;
 using Letters.Infrastructure;
 using Letters.Infrastructure.Contracts;
+using Letters.Infrastructure.Services.EmailService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,10 @@ var conStr = builder.Configuration.GetConnectionString("letterConn");
 builder.Services.AddDbContext<Context>(opt =>
     opt.UseNpgsql(conStr, b => b.MigrationsAssembly("Letters.API")));
 
+var emailConfig = builder.Configuration.GetSection("EmailConfiguration")
+    .Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailConfig);
+
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
@@ -29,6 +34,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options
     
 builder.Services.AddScoped<ValidationFilterAttribute>();
 
+builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add services to the container.

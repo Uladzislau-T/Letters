@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Letters.API.Filters
 {
+  /// <summary>
+  /// A filter that handles errors when they occur.
+  /// </summary>
   public class ValidationFilterAttribute : IActionFilter
   {
     public void OnActionExecuting(ActionExecutingContext context)

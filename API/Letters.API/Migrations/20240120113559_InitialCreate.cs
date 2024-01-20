@@ -21,8 +21,8 @@ namespace Letters.API.Migrations
                     Subject = table.Column<string>(type: "text", nullable: false),
                     Body = table.Column<string>(type: "text", nullable: false),
                     Date = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
-                    Result = table.Column<int>(type: "integer", nullable: false),
-                    FaildMessage = table.Column<string>(type: "text", nullable: true)
+                    Result = table.Column<string>(type: "text", nullable: false),
+                    FaildMessage = table.Column<string>(type: "text", nullable: true, defaultValue: "")
                 },
                 constraints: table =>
                 {

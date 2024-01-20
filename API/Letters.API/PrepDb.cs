@@ -9,6 +9,9 @@ namespace Letters.API
 {
   class PrepDb
   {
+    /// <summary>
+    /// This method performs migrations and populates the database if necesserry.
+    /// </summary>
     public static async Task PrepPopulation(IApplicationBuilder app, bool isDev)
     {
       using var serviceScope = app.ApplicationServices.CreateScope();

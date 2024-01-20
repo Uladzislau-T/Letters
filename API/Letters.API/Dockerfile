@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app   
     
 COPY ./API/Letters.API/*.csproj ./API/Letters.API/
@@ -14,7 +14,7 @@ FROM build as publish
 RUN dotnet publish "Letters.API.csproj" -c Release -o /app/publish
  
 
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app 
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Letters.API.dll"]
